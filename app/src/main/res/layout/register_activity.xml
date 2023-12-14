@@ -36,36 +36,58 @@
         android:background="@drawable/main_container"
         android:orientation="vertical"
         android:padding="30dp">
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/anaheim"
-            android:text="Login"
-            android:textAlignment="center"
+            android:text="Register"
             android:textColor="@color/md_theme_light_onPrimary"
-            android:textSize="40sp" />
+            android:textAlignment="center"
+            android:fontFamily="@font/anaheim"
+            android:textSize="40sp"
+            />
 
         <EditText
-            android:id="@+id/etLoginUsername"
+            android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:drawableLeft="@drawable/ic_android_black_24dp"
+            android:backgroundTint="@color/md_theme_light_onPrimary"
+            android:drawableLeft="@android:drawable/ic_dialog_email"
             android:drawablePadding="5dp"
             android:drawableTint="@color/md_theme_dark_onPrimaryContainer"
             android:ems="10"
             android:fontFamily="@font/roboto_mono"
-            android:hint="Username / Email"
+            android:hint="Email Address"
             android:inputType="textEmailAddress"
             android:textColor="@color/md_theme_light_onPrimary"
             android:textColorHint="@color/md_theme_dark_onSurfaceVariant" />
 
         <EditText
-            android:id="@+id/etLoginPassword"
+            android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/md_theme_light_onPrimary"
+            android:ems="10"
+            android:fontFamily="@font/roboto_mono"
+            android:hint="Name"
+            android:textColor="@color/md_theme_light_onPrimary"
+            android:textColorHint="@color/md_theme_dark_onSurfaceVariant" />
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_onPrimary"
+            android:ems="10"
+            android:fontFamily="@font/roboto_mono"
+            android:hint="Username"
+            android:textColor="@color/md_theme_light_onPrimary"
+            android:textColorHint="@color/md_theme_dark_onSurfaceVariant" />
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/md_theme_light_onPrimary"
             android:drawableLeft="@android:drawable/ic_lock_lock"
             android:drawableTint="@color/md_theme_dark_onPrimaryContainer"
             android:ems="10"
@@ -74,6 +96,32 @@
             android:inputType="textPassword"
             android:textColor="@color/md_theme_light_onPrimary"
             android:textColorHint="@color/md_theme_dark_onSurfaceVariant" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/md_theme_light_onPrimary"
+            android:drawableLeft="@android:drawable/ic_lock_lock"
+            android:drawableTint="@color/md_theme_dark_onPrimaryContainer"
+            android:ems="10"
+            android:fontFamily="@font/roboto_mono"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:textColor="@color/md_theme_light_onPrimary"
+            android:textColorHint="@color/md_theme_dark_onSurfaceVariant" />
+
+        <Button
+            android:id="@+id/bRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="@color/md_theme_light_onTertiary"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="Register"
+            android:textColor="@color/md_theme_light_tertiary"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/bLogin"
@@ -86,16 +134,7 @@
             android:textColor="@color/md_theme_light_primary"
             android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/bRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:backgroundTint="@color/md_theme_light_onTertiary"
-            android:fontFamily="@font/roboto_mono_bold"
-            android:text="Register"
-            android:textColor="@color/md_theme_light_tertiary"
-            android:textSize="20sp" />
+
     </LinearLayout>
 
 

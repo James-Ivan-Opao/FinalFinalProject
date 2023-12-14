@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="20dp"
+    app:cardBackgroundColor="@color/md_theme_light_errorContainer">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:drawableLeft="@android:drawable/stat_notify_error"
+            android:drawableTint="@color/md_theme_light_onErrorContainer"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="Oopsies"
+            android:textColor="@color/md_theme_light_onErrorContainer"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_mono_bold"
+            android:text="Something Went Wrong:"
+            android:textColor="@color/md_theme_light_onErrorContainer"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/anaheim"
+            android:text="Insert Text Here"
+            android:textAlignment="center"
+            android:textColor="@color/md_theme_light_onErrorContainer"
+            android:textSize="20sp" />
+
+        <Button
+            android:id="@+id/bClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/md_theme_light_onErrorContainer"
+            android:text="Close" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
