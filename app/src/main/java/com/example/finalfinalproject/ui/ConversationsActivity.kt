@@ -1,7 +1,9 @@
 package com.example.finalfinalproject.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -72,6 +74,10 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
             .centerCrop()
             .into(holder.ivImage);
         holder.tvName.text = otherUser.name
+        Log.d("USER_IMG", otherUser.image)
+        Log.d("USER_NAME", otherUser.name)
+        Log.d("USER_UNAME", otherUser.userName)
+        Log.d("USER_PW", otherUser.password)
 
         // get last message in conversation
         val lastMsg: Message = dbHandler.getLastMessage(currentConversation.conversationId!!)!!
@@ -79,5 +85,11 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
         holder.tvLastMsg.text = lastMsg.text
         holder.tvLastMsgTime.text = lastMsg.date.toString()
 
+        holder.itemView.setOnClickListener  {
+            val intent = Intent(context, MessagesActivity::class.java)
+            intent.putExtra("conversationId", currentConversation.conversationId)
+            intent.putExtra("otherUserId", otherUser.userId)
+            context.startActivity(intent)
+        }
     }
 }

@@ -149,7 +149,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 val password = cursor.getString(cursor.getColumnIndex(USER_PASSWORD))
                 val image = cursor.getString(cursor.getColumnIndex(USER_IMAGE))
 
-                return User(userId, fullName, userName, password, image)
+                return User(userId=userId, name=fullName, userName = userName, password = password, image = image)
             }
         } finally {
             cursor?.close()
@@ -178,7 +178,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 val password = cursor.getString(cursor.getColumnIndex(USER_PASSWORD))
                 val image = cursor.getString(cursor.getColumnIndex(USER_IMAGE))
 
-                return User(userId, fullName, userName, password, image)
+                return User(userId=userId, name=fullName, userName = userName, password = password, image = image)
             }
         } finally {
             cursor?.close()
@@ -218,7 +218,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 text = cursor.getString(cursor.getColumnIndex(MESSAGE_TEXT))
                 date = cursor.getString(cursor.getColumnIndex(MESSAGE_DATETIME))
 
-                val msg = Message(messageId = messageId, conversationId = conversation, senderId = senderId, receiverId = receiverId, text = text, date = LocalDateTime.parse(date))
+                val msg = Message(messageId = messageId, conversationId = conversation, senderId = senderId, receiverId = receiverId, text = text, date = LocalDateTime.parse(date.replace(" ","T")))
                 msgList.add(msg)
             } while (cursor.moveToNext())
         }
@@ -324,7 +324,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 text = cursor.getString(cursor.getColumnIndex(MESSAGE_TEXT))
                 date = cursor.getString(cursor.getColumnIndex(MESSAGE_DATETIME))
 
-                return Message(messageId = messageId, conversationId = conversation, senderId = senderId, receiverId = receiverId, text = text, date = LocalDateTime.parse(date))
+                return Message(messageId = messageId, conversationId = conversation, senderId = senderId, receiverId = receiverId, text = text, date = LocalDateTime.parse(date.replace(" ","T")))
             } while (cursor.moveToNext())
         }
 
