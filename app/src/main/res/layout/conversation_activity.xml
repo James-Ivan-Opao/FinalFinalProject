@@ -3,21 +3,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_theme_light_inversePrimary"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/md_theme_light_primary"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="10sp">
 
         <ImageButton
             android:id="@+id/btnUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:backgroundTint="#00FFFFFF" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -25,15 +26,17 @@
             android:layout_weight="1"
             android:text="Conversations"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <ImageButton
             android:id="@+id/btnCompose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:src="@android:drawable/btn_star" />
+            android:layout_width="40sp"
+            android:layout_height="40sp"
+            android:backgroundTint="#00FFFFFF"
+            android:src="@android:drawable/ic_menu_edit"
+            tools:visibility="visible" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

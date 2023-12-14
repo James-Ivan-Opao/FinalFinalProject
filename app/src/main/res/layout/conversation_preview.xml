@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="16dp">
-
-    <ImageView
-        android:id="@+id/ivImage"
-        android:layout_width="50sp"
-        android:layout_height="50sp" />
+    android:background="@color/md_theme_dark_onSurface"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="5sp">
+        android:layout_height="wrap_content"
+        android:background="@color/md_theme_light_primaryContainer"
+        android:orientation="horizontal"
+        android:padding="16sp">
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="sample name" />
+        <ImageView
+            android:id="@+id/ivImage"
+            android:layout_width="50sp"
+            android:layout_height="50sp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:padding="5sp">
 
             <TextView
-                android:id="@+id/tvLastMsg"
-                android:layout_width="0dp"
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="2.5"
-                android:gravity="start"
-                android:text="sample msg" />
+                android:text="sample name" />
 
-            <TextView
-                android:id="@+id/tvLastMsgTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="end"
-                android:text="sample time" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvLastMsg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:gravity="start"
+                    android:text="sample msg" />
+
+                <TextView
+                    android:id="@+id/tvLastMsgTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    android:text="sample time" />
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/md_theme_dark_primary" />
 </LinearLayout>

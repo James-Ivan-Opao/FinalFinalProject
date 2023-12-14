@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,14 @@ class ConversationsActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.rvConversations)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = conversationAdapter
+
+        // header stuff
+        val btnUser = findViewById<ImageButton>(R.id.btnUser)
+        Picasso.with(this)
+            .load(dbHandler.getUser(currentUserId)!!.image)
+            .fit()
+            .centerCrop()
+            .into(btnUser)
     }
 }
 
@@ -72,7 +81,7 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
             .load(otherUser.image)
             .fit()
             .centerCrop()
-            .into(holder.ivImage);
+            .into(holder.ivImage)
         holder.tvName.text = otherUser.name
         Log.d("USER_IMG", otherUser.image)
         Log.d("USER_NAME", otherUser.name)
@@ -81,8 +90,13 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
 
         // get last message in conversation
         val lastMsg: Message = dbHandler.getLastMessage(currentConversation.conversationId!!)!!
+        val you = if (lastMsg.senderId == currentUser)  {
+            "You: "
+        } else {
+            ""
+        }
 
-        holder.tvLastMsg.text = lastMsg.text
+        holder.tvLastMsg.text = you + lastMsg.text
         holder.tvLastMsgTime.text = lastMsg.date.toString()
 
         holder.itemView.setOnClickListener  {

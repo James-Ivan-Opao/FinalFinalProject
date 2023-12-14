@@ -1,18 +1,21 @@
 package com.example.finalfinalproject.ui
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.provider.Telephony.Sms.Conversations
+import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalfinalproject.R
 import com.example.finalfinalproject.adapter.DatabaseHandler
 import com.example.finalfinalproject.model.Message
-import com.example.finalfinalproject.model.User
 import com.example.messageuitest.ReceiveMessageView
 import com.example.messageuitest.SendMessageView
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
+import com.squareup.picasso.Picasso
 
 class MessagesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,8 +32,14 @@ class MessagesActivity : AppCompatActivity() {
 
         val mainView = findViewById<LinearLayout>(R.id.messagesView)
 
+        // load messages
         val img1 = findViewById<ImageView>(R.id.imageView1)
         val img2 = findViewById<ImageView>(R.id.imageView2)
+        val tvName = findViewById<TextView>(R.id.tvOtherUserName)
+        val tvUname = findViewById<TextView>(R.id.tvOtherUserUname)
+
+        tvName.text = otherUser.name
+        tvUname.text = otherUser.userName
 
         for ((i, message) in messages.withIndex()) {
             if (message.receiverId == curUser.userId) {
@@ -47,5 +56,27 @@ class MessagesActivity : AppCompatActivity() {
                 mainView.addView(messageView, i)
             }
         }
+
+        // messaging
+        val etMsg = findViewById<EditText>(R.id.etMsg)
+        val btnSend = findViewById<ImageButton>(R.id.btnSend)
+        btnSend.setOnClickListener  {
+            val msg = etMsg.text.toString()
+            dbHandler.addMessage(msg, curUser.userId!!, otherUser.userId!!)
+            etMsg.setText("")
+        }
+
+        // some other stuff
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener  {
+            val intent = Intent(this, ConversationsActivity::class.java)
+            startActivity(intent)
+        }
+        val btnOtherUser = findViewById<ImageButton>(R.id.btnOtherUser)
+        Picasso.with(this)
+            .load(otherUser.image)
+            .fit()
+            .centerCrop()
+            .into(btnOtherUser)
     }
 }
