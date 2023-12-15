@@ -344,4 +344,26 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
         return success
     }
+
+    fun updatePassword(user: User) : Int    {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(USER_FULLNAME, user.name)
+        contentValues.put(USER_UNAME, user.userName)
+        contentValues.put(USER_PASSWORD, user.password)
+        contentValues.put(USER_IMAGE, user.image)
+
+        var success = db.update(TABLE_USER, contentValues, "id="+user.userId, null)
+        db.close()
+        return success
+    }
+
+    fun deleteAccount(userId: Int) : Int    {
+        val db = this.writableDatabase
+
+        val success = db.delete(TABLE_USER, "id=$userId", null)
+        db.close()
+        return success
+    }
 }

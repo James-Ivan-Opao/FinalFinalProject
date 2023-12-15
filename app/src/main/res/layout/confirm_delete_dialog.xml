@@ -12,17 +12,15 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Change Profile Picture"
+            android:text="Delete Account"
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <EditText
+        <TextView
             android:id="@+id/etImgLink"
             android:layout_width="300sp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Link to image"
-            android:inputType="text" />
+            android:text="Are you sure you want to delete your account? This cannot be undone." />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,11 +28,17 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnChange"
+                android:id="@+id/btnYes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Change" />
+                android:text="Yes" />
+            <Button
+                android:id="@+id/btnNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="No" />
         </LinearLayout>
 
     </LinearLayout>
