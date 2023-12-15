@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -30,6 +31,12 @@ class SearchUsersActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.search_users_activity)
 
+        val btnBack = findViewById<ImageButton>(R.id.btnBack)
+        btnBack.setOnClickListener  {
+            val intent = Intent(this, ConversationsActivity::class.java)
+            startActivity(intent)
+        }
+
         val sharedPreferences = getSharedPreferences("session", Context.MODE_PRIVATE)
         var dbHandler = DatabaseHandler(this)
         var currentUserId = sharedPreferences.getInt("USER_ID", 0)
@@ -41,6 +48,8 @@ class SearchUsersActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
         adapter = UsersAdapter(this, currentUserId)
         recyclerView.adapter = adapter
+
+
 
         // Set up SearchView listener
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -99,7 +108,11 @@ class UsersAdapter(private val context: Context, private val currentUserId: Int)
         holder.itemView.setOnClickListener  {
             val intent = Intent(context, MessagesActivity::class.java)
             intent.putExtra("otherUserId", user.userId)
-            intent.putExtra("conversationId", dbHandler.getConversation(currentUserId, user.userId!!)!!.conversationId)
+
+            val conversation: Conversation? = dbHandler.getConversation(currentUserId, user.userId!!)
+            if (conversation != null)
+                intent.putExtra("conversationId", conversation.conversationId)
+
             context.startActivity(intent)
         }
     }

@@ -125,7 +125,6 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         contentValues.put(CONVERSATION_USERTWO, userTwo)
 
         val success = db.insert(TABLE_CONVERSATION, null, contentValues)
-        db.close()
         return success
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.provider.Telephony.Sms.Conversations
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -42,6 +43,8 @@ class MessagesActivity : AppCompatActivity() {
 
 
         for ((i, message) in messages.withIndex()) {
+            Log.d("HIII", message.toString())
+
             if (message.receiverId == curUser.userId) {
                 var messageView: ReceiveMessageView = ReceiveMessageView(this)
                 messageView.setMessageText(message.text)
