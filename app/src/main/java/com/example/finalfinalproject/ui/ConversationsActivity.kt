@@ -19,6 +19,7 @@ import com.example.finalfinalproject.model.Conversation
 import com.example.finalfinalproject.model.Message
 import com.example.finalfinalproject.model.User
 import com.squareup.picasso.Picasso
+import java.time.format.DateTimeFormatter
 
 class ConversationsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -105,8 +106,11 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
             ""
         }
 
+        val formatter = DateTimeFormatter.ofPattern("hh:mm a, LLL dd, uuuu")
+        val formatted = formatter.format(lastMsg.date)
+        Log.d("TIME", formatted)
         holder.tvLastMsg.text = you + lastMsg.text
-        holder.tvLastMsgTime.text = lastMsg.date.toString()
+        holder.tvLastMsgTime.text = formatted
 
         holder.itemView.setOnClickListener  {
             val intent = Intent(context, MessagesActivity::class.java)

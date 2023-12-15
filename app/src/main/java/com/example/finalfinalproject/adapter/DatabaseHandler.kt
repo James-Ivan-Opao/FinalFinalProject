@@ -91,7 +91,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     // adds a conversation to the database
-    fun addMessage(message: String, sender: Int, recipient: Int):Long  {
+    fun addMessage(message: String, sender: Int, recipient: Int): Int  {
         val db = this.writableDatabase
         val contentValues = ContentValues()
 
@@ -113,7 +113,8 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
 
         val success = db.insert(TABLE_MESSAGE, null, contentValues)
         db.close()
-        return success
+
+        return conversation.conversationId ?: 0
     }
 
     // starts a new conversation
@@ -330,7 +331,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         return null
     }
 
-    fun updateProfilePicture(user: User) : Int  {
+    fun updateProfilePicture(user: User ) : Int  {
         val db = this.writableDatabase
         val contentValues = ContentValues()
 

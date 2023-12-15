@@ -28,7 +28,7 @@
             android:textColor="#ffffff"/>
     </LinearLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserProfile"
         android:layout_width="30dp"
         android:layout_height="30dp"

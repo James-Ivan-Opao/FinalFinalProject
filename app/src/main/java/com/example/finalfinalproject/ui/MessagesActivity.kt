@@ -31,7 +31,7 @@ class MessagesActivity : AppCompatActivity() {
         var curUser = dbHandler.getUser(sharedPreferences.getInt("USER_ID", 0))!!
         var otherUser = dbHandler.getUser(intent.getIntExtra("otherUserId", 0))!!
         val messages: ArrayList<Message> = dbHandler.getMessages(intent.getIntExtra("conversationId", 0))
-
+        Log.d("LOADED CONV ID", intent.getIntExtra("conversationId", 0).toString())
         val mainView = findViewById<LinearLayout>(R.id.messagesView)
 
         // load messages
@@ -70,7 +70,10 @@ class MessagesActivity : AppCompatActivity() {
         val btnSend = findViewById<ImageButton>(R.id.btnSend)
         btnSend.setOnClickListener  {
             val msg = etMsg.text.toString()
-            dbHandler.addMessage(msg, curUser.userId!!, otherUser.userId!!)
+            val currConvId: Int = dbHandler.addMessage(msg, curUser.userId!!, otherUser.userId!!)
+            Log.d("CURRENT CONV ID", currConvId.toString())
+
+            intent.putExtra("conversationId", currConvId)
             etMsg.setText("")
             finish()
             overridePendingTransition(0,0)

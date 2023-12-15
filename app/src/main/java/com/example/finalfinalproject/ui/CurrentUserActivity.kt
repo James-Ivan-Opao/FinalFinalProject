@@ -84,6 +84,18 @@ class CurrentUserActivity : AppCompatActivity() {
         btnChange.setOnClickListener    {
             val dbHandler = DatabaseHandler(this)
             val newLink: String = dialog.findViewById<EditText>(R.id.etImgLink).text.toString()
+            user.image = newLink
+
+            try {
+                Picasso.with(this)
+                    .load(newLink)
+                    .into(imageView)
+
+                dbHandler.updateProfilePicture(user)
+            } catch (e: Throwable) {
+                Toast.makeText(this, "Invalid Image", Toast.LENGTH_LONG)
+            }
+
 
             dialog.dismiss()
         }

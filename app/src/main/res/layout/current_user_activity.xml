@@ -24,7 +24,7 @@
             android:background="@drawable/left_arrow" />
     </LinearLayout>
 
-    <ImageView
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ivUserPic"
         android:layout_width="200sp"
         android:layout_height="200sp"

@@ -34,8 +34,8 @@
             android:id="@+id/btnCompose"
             android:layout_width="40sp"
             android:layout_height="40sp"
-            android:backgroundTint="#00FFFFFF"
-            android:src="@android:drawable/ic_menu_edit"
+            android:background="?android:attr/actionModeWebSearchDrawable"
+            android:backgroundTint="@android:color/white"
             tools:visibility="visible" />
     </LinearLayout>
 
