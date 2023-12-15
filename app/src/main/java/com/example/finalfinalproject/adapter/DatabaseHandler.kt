@@ -230,7 +230,17 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
     @SuppressLint("Range")
     fun getConversations(userId: Int): ArrayList<Conversation>    {
         val conversationList:ArrayList<Conversation> = ArrayList<Conversation>()
-        val selectQuery = "SELECT * FROM $TABLE_CONVERSATION WHERE $CONVERSATION_USERONE='$userId' OR $CONVERSATION_USERTWO='$userId'"
+        val selectQuery = """
+                            SELECT $TABLE_CONVERSATION.*, MAX($TABLE_MESSAGE.$MESSAGE_DATETIME) AS latest_message_datetime
+                            FROM $TABLE_CONVERSATION
+                            LEFT JOIN $TABLE_MESSAGE ON
+                                $TABLE_CONVERSATION.$CONVERSATION_ID = $TABLE_MESSAGE.$MESSAGE_CONVERSATION
+                            WHERE
+                                $CONVERSATION_USERONE='$userId' OR $CONVERSATION_USERTWO='$userId'
+                            GROUP BY $TABLE_CONVERSATION.$CONVERSATION_ID
+                            ORDER BY latest_message_datetime DESC
+                        """
+
         val db = this.readableDatabase
         var cursor: Cursor? = null
 
