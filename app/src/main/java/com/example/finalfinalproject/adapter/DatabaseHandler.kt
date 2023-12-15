@@ -330,4 +330,18 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
 
         return null
     }
+
+    fun updateProfilePicture(user: User) : Int  {
+        val db = this.writableDatabase
+        val contentValues = ContentValues()
+
+        contentValues.put(USER_FULLNAME, user.name)
+        contentValues.put(USER_UNAME, user.userName)
+        contentValues.put(USER_PASSWORD, user.password)
+        contentValues.put(USER_IMAGE, user.image)
+
+        var success = db.update(TABLE_USER, contentValues, "id="+user.userId, null)
+        db.close()
+        return success
+    }
 }

@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalfinalproject.R
@@ -33,14 +34,13 @@ class MessagesActivity : AppCompatActivity() {
         val mainView = findViewById<LinearLayout>(R.id.messagesView)
 
         // load messages
-        val img1 = findViewById<ImageView>(R.id.imageView1)
-        val img2 = findViewById<ImageView>(R.id.imageView2)
         val tvName = findViewById<TextView>(R.id.tvOtherUserName)
         val tvUname = findViewById<TextView>(R.id.tvOtherUserUname)
 
         tvName.text = otherUser.name
         tvUname.text = otherUser.userName
 
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
         for ((i, message) in messages.withIndex()) {
             if (message.receiverId == curUser.userId) {
                 var messageView: ReceiveMessageView = ReceiveMessageView(this)
@@ -55,6 +55,7 @@ class MessagesActivity : AppCompatActivity() {
                 messageView.setMessageDate(message.date.toString())
                 mainView.addView(messageView, i)
             }
+            scrollView.fullScroll(ScrollView.FOCUS_DOWN)
         }
 
         // messaging
@@ -64,6 +65,10 @@ class MessagesActivity : AppCompatActivity() {
             val msg = etMsg.text.toString()
             dbHandler.addMessage(msg, curUser.userId!!, otherUser.userId!!)
             etMsg.setText("")
+            finish()
+            overridePendingTransition(0,0)
+            startActivity(getIntent())
+            overridePendingTransition(0,0)
         }
 
         // some other stuff

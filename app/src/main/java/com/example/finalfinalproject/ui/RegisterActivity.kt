@@ -47,7 +47,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if (notNull(name) && notNull(username) && notNull(password) && notNull(passwordConfirm) && pwConfirm(password, passwordConfirm) && pwValidation(password)) {
-            val status = dbHandler.addUser(User(userName=username, name=name, password=password, userId = null, image = "https://i.imgur.com/S7fpU0O.jpeg"))
+            val status = dbHandler.addUser(User(userName=username, name=name, password=password, userId = null, image = getString(R.string.default_picture)))
             if (status > -1)    {
                 // Display successful Sign Up toast
                 Toast.makeText(this, "Signed up successfully", Toast.LENGTH_LONG).show()

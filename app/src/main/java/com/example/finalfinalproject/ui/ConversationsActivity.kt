@@ -44,6 +44,10 @@ class ConversationsActivity : AppCompatActivity() {
             .fit()
             .centerCrop()
             .into(btnUser)
+        btnUser.setOnClickListener  {
+            val intent = Intent(this, CurrentUserActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 
