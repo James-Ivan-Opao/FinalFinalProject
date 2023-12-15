@@ -40,7 +40,7 @@ class MessagesActivity : AppCompatActivity() {
         tvName.text = otherUser.name
         tvUname.text = otherUser.userName
 
-        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+
         for ((i, message) in messages.withIndex()) {
             if (message.receiverId == curUser.userId) {
                 var messageView: ReceiveMessageView = ReceiveMessageView(this)
@@ -55,9 +55,13 @@ class MessagesActivity : AppCompatActivity() {
                 messageView.setMessageDate(message.date.toString())
                 mainView.addView(messageView, i)
             }
-            scrollView.fullScroll(ScrollView.FOCUS_DOWN)
         }
-
+        val scrollView = findViewById<ScrollView>(R.id.scrollView)
+        scrollView.post(Runnable {
+            run() {
+                scrollView.fullScroll(ScrollView.FOCUS_DOWN)
+            }
+        })
         // messaging
         val etMsg = findViewById<EditText>(R.id.etMsg)
         val btnSend = findViewById<ImageButton>(R.id.btnSend)
@@ -84,4 +88,5 @@ class MessagesActivity : AppCompatActivity() {
             .centerCrop()
             .into(btnOtherUser)
     }
+
 }

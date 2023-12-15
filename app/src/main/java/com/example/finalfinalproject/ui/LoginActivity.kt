@@ -1,11 +1,17 @@
 package com.example.finalfinalproject.ui
 
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import com.example.finalfinalproject.R
 import com.example.finalfinalproject.adapter.DatabaseHandler
@@ -49,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                 startActivity(i)
             }
             else    {
-                Toast.makeText(this, "User with provided credentials not found", Toast.LENGTH_LONG).show()
+                showError("User with provided credentials not found")
             }
         }
     }
@@ -57,5 +63,22 @@ class LoginActivity : AppCompatActivity() {
     fun signupRedirect(view: View)   {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun showError(msg: String) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.error_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogClose = dialog.findViewById<Button>(R.id.bClose)
+        dialogClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val tvError = dialog.findViewById<TextView>(R.id.tvError)
+        tvError.text = msg
+
+        dialog.show()
     }
 }

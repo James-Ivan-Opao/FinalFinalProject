@@ -366,4 +366,38 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         db.close()
         return success
     }
+
+   @SuppressLint("Range")
+    fun getUsers() : ArrayList<User> {
+        val userList: ArrayList<User> = ArrayList<User>()
+        val query = "SELECT * FROM $TABLE_USER"
+        val db = this.readableDatabase
+        var cursor:Cursor? = null
+        try {
+            cursor = db.rawQuery(query, null)
+        } catch (e: SQLiteException) {
+            db.execSQL(query)
+            return ArrayList()
+        }
+
+        var userId: Int
+        var fullName: String
+        var userName: String
+        var password: String
+        var image: String
+
+        if (cursor.moveToFirst()) {
+            do {
+                userId = cursor.getInt(cursor.getColumnIndex(USER_ID))
+                fullName = cursor.getString(cursor.getColumnIndex(USER_FULLNAME))
+                userName = cursor.getString(cursor.getColumnIndex(USER_UNAME))
+                password = cursor.getString(cursor.getColumnIndex(USER_PASSWORD))
+                image = cursor.getString(cursor.getColumnIndex(USER_IMAGE))
+
+                val user = User(userId, fullName, userName, password, image)
+                userList.add(user)
+            } while (cursor.moveToNext())
+        }
+        return userList
+    }
 }

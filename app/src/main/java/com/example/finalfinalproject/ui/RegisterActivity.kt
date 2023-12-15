@@ -1,9 +1,15 @@
 package com.example.finalfinalproject.ui
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.finalfinalproject.R
@@ -51,22 +57,53 @@ class RegisterActivity : AppCompatActivity() {
             if (status > -1)    {
                 // Display successful Sign Up toast
                 Toast.makeText(this, "Signed up successfully", Toast.LENGTH_LONG).show()
-
+                showSuccess()
                 // Redirect to login page
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
             }
         }
         else if (!pwValidation(password))   {
-            Toast.makeText(this, "Invalid password", Toast.LENGTH_LONG).show()
+            showError("Invalid password")
         }
         else    {
-            Toast.makeText(this, "No fields can be blank", Toast.LENGTH_LONG).show()
+            showError("No fields can be blank")
         }
+    }
+
+    private fun showSuccess() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.success_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogClose = dialog.findViewById<Button>(R.id.bClose)
+        dialogClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     fun loginPageRedirect(view: View)   {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun showError(msg: String) {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.error_dialog)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        val dialogClose = dialog.findViewById<Button>(R.id.bClose)
+        dialogClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val tvError = dialog.findViewById<TextView>(R.id.tvError)
+        tvError.text = msg
+
+        dialog.show()
     }
 }
