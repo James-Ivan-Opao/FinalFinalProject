@@ -48,6 +48,11 @@ class ConversationsActivity : AppCompatActivity() {
             val intent = Intent(this, CurrentUserActivity::class.java)
             startActivity(intent)
         }
+        val btnCompose = findViewById<ImageButton>(R.id.btnCompose)
+        btnCompose.setOnClickListener   {
+            val intent = Intent(this, SearchUsersActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
 

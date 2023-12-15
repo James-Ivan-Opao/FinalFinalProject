@@ -367,10 +367,11 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
         return success
     }
 
+    // get all users (except the current user)
    @SuppressLint("Range")
-    fun getUsers() : ArrayList<User> {
+    fun getUsers(userId: Int) : ArrayList<User> {
         val userList: ArrayList<User> = ArrayList<User>()
-        val query = "SELECT * FROM $TABLE_USER"
+        val query = "SELECT * FROM $TABLE_USER WHERE $USER_ID <> $userId"
         val db = this.readableDatabase
         var cursor:Cursor? = null
         try {
@@ -394,7 +395,7 @@ class DatabaseHandler (context: Context): SQLiteOpenHelper(context, DATABASE_NAM
                 password = cursor.getString(cursor.getColumnIndex(USER_PASSWORD))
                 image = cursor.getString(cursor.getColumnIndex(USER_IMAGE))
 
-                val user = User(userId, fullName, userName, password, image)
+                val user = User(userId=userId, name=fullName, userName = userName, password = password, image = image)
                 userList.add(user)
             } while (cursor.moveToNext())
         }
