@@ -92,10 +92,6 @@ RecyclerView.Adapter<ConversationAdapter.ConversationViewHolder>()    {
             .centerCrop()
             .into(holder.ivImage)
         holder.tvName.text = otherUser.name
-        Log.d("USER_IMG", otherUser.image)
-        Log.d("USER_NAME", otherUser.name)
-        Log.d("USER_UNAME", otherUser.userName)
-        Log.d("USER_PW", otherUser.password)
 
         // get last message in conversation
         val lastMsg: Message = dbHandler.getLastMessage(currentConversation.conversationId!!)!!
